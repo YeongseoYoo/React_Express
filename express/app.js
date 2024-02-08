@@ -3,14 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var app = express();
 
 const cors = require('cors');
-
+app.use(cors());
 
 var todoRouter = require('./routes/todo');
 
-var app = express();
-app.use(cors());
+
+const session = require('express-session');
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "<my-secret>",
+    resave: true,
+    saveUninitalized: true,
+    cookie: {
+      httpOnly: true,
+      secure: true,
+    },
+  })
+);
 
 
 // view engine setup

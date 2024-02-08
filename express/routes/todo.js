@@ -12,7 +12,7 @@ router.get("/", function(req, res, next) {
 
 /* POST Todo page */
 router.post("/", function(req, res, next) {
-    const { content, chosung, createdAt} = req.body; // chosung 추가
+    const { content, chosung, createdAt} = req.body; 
     const newTodo = new Todo({
         content,
         createdAt
